@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generative Image Layer Decomposition with Visual Effects</title>
+
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+  <style>
+      
+      .references {
+      text-align: center; 
+      margin: 50px auto; 
+      font-size: 1rem;
+      width: 60%; 
+      background-color: #f9f9f9; 
+      padding: 20px; 
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+      }
+
+      .references ol {
+          display: inline-block; 
+          text-align: left;
+          padding-left: 20px;
+          margin: 0 auto;
+      }
+
+      .references li {
+          margin-bottom: 5px; 
+      }
+
+      .custom-list {
+            list-style: none; 
+            padding-left: 0; 
+        }
+        .custom-list {
+            counter-reset: custom-counter;
+      }
+
+       
+        .acknowledgment {
+            background-color: #d7dee2; 
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px auto; 
+            width: 60%; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            text-align: left;
+        }
+
+        .acknowledgment h2 {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .acknowledgment p {
+            line-height: 1.6;
+            text-align: left; 
+        }
+
+        .acknowledgment a {
+            color: #0073e6; 
+            text-decoration: none;
+        }
+
+        .acknowledgment a:hover {
+            text-decoration: underline;
+        }
+
+       
+       
+      .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%; 
+            max-height: 80%; 
+            overflow-y: auto; 
+            border-radius: 5px;
+        }
+
+       
+        .modal-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; 
+            margin-bottom: 20px;
+        }
+
+        .modal-item img {
+            max-width: 150px;
+            height: auto;
+            margin-right: 10px; 
+            border-radius: 5px;
+        }
+
+        .modal-item a {
+            color: #0073e6;
+            text-decoration: none;
+            word-break: break-word; 
+        }
+
+        .modal-item a:hover {
+            text-decoration: underline;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+  </style>
+
+
+
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Controllable Layered Image Generation for Real-World Editing</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <span>Jinrui Yang</a></span><sup>1,2,*</sup>,</span>
+            <span class="author-block">
+              <span>Qing Liu</a></span><sup>2</sup>,</span>
+            <span class="author-block">
+              <span>Yijun Li</a></span><sup>2</sup>,</span>
+            </span>
+            <span class="author-block">
+              <span>Mengwei Ren</a></span><sup>2</sup>,</span>
+            </span>
+            <br>
+            <span class="author-block">
+              <span>Letian Zhang</a></span><sup>1</sup>,</span>
+            </span>
+            <span class="author-block">
+              <span>Zhe Lin</a></span><sup>2</sup>,</span>
+            </span>
+            <span class="author-block">
+              <span>Cihang Xie</a></span><sup>1</sup>,</span>
+            </span>
+            <span class="author-block">
+              <span>Yuyin Zhou</a></span><sup>1</sup>.</span>
+            </span>
+          </div>
+ 
+        
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <span><sup>1</sup>UC Santa Cruz</a></span>,</span>
+            <span class="author-block">
+              <span><sup>2</sup>Adobe Research</a></span></span>
+          
+          
+          </div>
+          
+          <div class="equal-contribution-advising-note">
+            <p>* This work was done when Jinrui Yang was a research intern at Adobe Research.</p>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa-solidassasas fa-face-smiling-hands"></i>
+                    <img src="./resources/ar.svg" alt="img" style="width: 100%; height: 100%" /> 
+                  </span>
+                  <span>arXiv (Coming Soon)</span>
+                </a>
+              </span>
+         
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Source (Coming Soon)</span>
+                  </a>
+              </span>
+
+              <!-- BibTeX.-->
+              <!-- <span class="link-block">
+                <a href="#citation-block" class="external-link button is-normal is-rounded is-dark">
+                    <span>BibTeX</span>
+                </a> -->
+            </span>
+            </div>
+            
+         
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Overview of LASAGNA</h2></center>
+      <center><img src="./resources/teaser.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+      <b>Layered generation with \ours{}.</b> <b>(a)</b> Our framework supports three generation modes: background-conditioned foreground generation, foreground-conditioned background generation, and text-to-all layer generation, which flexibly handle different inputs and jointly synthesize coherent, high-quality composites, backgrounds, and transparent foregrounds with realistic visual effects (e.g., shadows and reflections). <b>(b)</b> Generated layers enable direct post-editing into new, coherent scenes. 
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<section class="section">
+  <div class="container">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-left">
+          <p>
+            Recent image generation models have shown impressive progress, yet they often struggle to provide controllable and consistent results when users attempt to edit specific elements within an existing image. Layered representations enable flexible, user-driven content creation, but existing approaches often fail to produce layers with coherent compositing relationships, and their object layers typically lack realistic visual effects such as shadows and reflections. To overcome these limitations, we propose \ours{}, a novel, unified framework that generates an image jointly with its composing layers---a photorealistic background and a high-quality transparent foreground with compelling visual effects. Unlike prior work, LASAGNA efficiently learns correct image composition from a wide range of conditioning inputs—text prompts, foreground, background, and location masks—offering greater controllability for real-world applications. To enable this, we introduce \dataset{}, a new dataset composed of clean backgrounds and RGBA foregrounds with physically grounded visual effects. We also propose \benchmark{}, the first  benchmark for layer editing. We demonstrate that LASAGNA excels in generating highly consistent and coherent results across multiple image layers simultaneously, enabling diverse post-editing applications that accurately preserve identity and visual effects. LASAGNA-48K and LASAGNABENCH will be publicly released to foster open research in the community.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<br>
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">The Framework of \ours{} </h2></center>
+      <center><img src="./resources/framework.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+        <b>Pipeline of \ours{} framework.</b> We formulate the joint generation of composite images, backgrounds, and foregrounds as a flexible, layer-conditional denoising task. This single framework supports multiple workflows, including FG_Gen, BG_Gen, and Text2All. We use a unified input representation with learnable embeddings that distinguish different roles of visual latents (noise, BG, FG, and mask) across tasks, enabling the model to adapt its behavior under various generation settings. This allows a single attention-based model to flexibly process varied combinations of inputs and targets simultaneously.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Data Construction Pipeline </h2></center>
+      <center><img src="./resources/data_pipeline.png" alt="alt text"
+                        style="width: 60%; object-fit: cover; max-width:60%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 60%; max-width: 60%;">
+        <b>Data construction pipeline.</b> Starting with existing datasets, we implement a four-stage data construction pipeline leveraging off-the-shelf models with a custom-trained data curator. This process yields a high-quality dataset as the foundation for subsequent model training.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Samples of \dataset{} and \benchmark{}</h2></center>
+      <center><img src="./resources/vis_train_and_bench.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+        <b>Samples of \dataset{} and \benchmark{}.</b> Each row shows a composite image, a clean background, and a foreground layer with visual effects, along with corresponding captions for all components.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+
+
+<br>
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Layer Generation vs General Models</h2></center>
+      <center><img src="./resources/com_others.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+        <b>Layer generation compared with state-of-the-art image generation and editing models.</b> We compare LASAGNA with Flux.1 <span style="color: blue;">[1]</span>, Qwen-Image-Edit <span style="color: blue;">[2]</span>, and gpt-image-1[High] <span style="color: blue;">[3]</span>. <b>(a)</b> Across three distinct generation tasks, LASAGNA consistently achieves superior inter-layer coherence and consistency. In contrast, competing models often fail to maintain these properties. <b>(b)</b> Moreover, by generating foregrounds with faithfully preserved visual effects, LASAGNA enables diverse post-generation editing operations on individual layers directly—a capability not supported by existing models.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+
+<br>
+
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Layer Generation vs Expert Model</h2></center>
+      <center><img src="./resources/vis_comp_layerdiff.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+        <b>Layer generation compared with LayerDiffuse <span style="color: blue;">[4]</span>.</b> In FG_Gen, our model produces object with appropriate size and position, along with realistic shadows consistent with the background. In BG_Gen and Text2All, our model produces visually consistent results across all layers. Furthermore, it can generate new foregrounds with corresponding visual effects, enabling flexible and realistic post-editing.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+
+<br>
+
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Layer Editing with Visual Effects</h2></center>
+      <center><img src="./resources/comp_layer_v2.png" alt="alt text"
+                        style="width: 60%; object-fit: cover; max-width:60%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 60%; max-width: 60%;">
+      <b>Layer editing with visual effects.</b> We demonstrate the benefits of explicit layer representations with visual effects by comparing three paradigms: Instruct Editing, Layer Editing, and Layer Editing with Visual Effects (LASAGNA). Across recoloring, spatial, and compositional editing tasks, the lack of explicit layer representations makes Instruct Editing prone to unintended changes and less responsive to spatial instructions, while Layer Editing with Visual Effects  yields more coherent and photorealistic results.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Creative Applications</h2></center>
+      <center><img src="./resources/creative_app_v2.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+        <b>Diverse creative applications driven by our model.</b> We leverage both Text2All and FG_Gen modes to jointly guide the synthesis process, unlocking a broader range of editing possibilities and producing diverse, visually appealing results.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section id="citation-block" style="margin-top: 50px;">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code></code></pre>
+  </div>
+</section>
+ -->
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <h2 class="title is-3">More Visualization Results</h2>
+  </div>
+</section>
+
+<br>
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Background-conditioned Foreground Generation</h2></center>
+      <center><img src="./resources/bg_cond.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+        <b>More results from \ours{} under the background-conditioned foreground generation (FG_Gen) mode.</b>
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Foreground-conditioned Background Generation</h2></center>
+      <center><img src="./resources/fg_cond.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+      More results from \ours{} under the foreground-conditioned background generation (BG_Gen) mode.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+
+<br>
+
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">Text-to-all Layer Generation</h2></center>
+      <center><img src="./resources/text2all.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+      More results from \ours{} under the text-to-all layer generation (Text2All) mode.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+
+<br>
+
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">More Samples of \dataset{}</h2></center>
+      <center><img src="./resources/train_data_3.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+      <b>More samples of \dataset{}.</b> Each sample consists of a composite image, a clean background, and a foreground layer with visual effects, along with corresponding captions for all components.
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+<br>
+
+
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <center><h2 class="title is-3">More Samples of \benchmark{}</h2></center>
+      <center><img src="./resources/benchmark_data.png" alt="alt text"
+                        style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
+      <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+      <b>More samples of \benchmark{}.</b> Each sample consists of a composite image, a foreground layer with visual effects, and a clean background along with corresponding captions for all components. <b>Foreground with visual effects annotated by professional annotators. Background are decomposed by expert models or captured by camera.</b>
+      </h2></center>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="references">
+  <h2><b>References</b></h2>
+  <ol class="custom-list">
+    <li>[1] Black Forest Labs, Stephen Batifol, Andreas
+      Blattmann, Frederic Boesel, Saksham Consul,
+      Cyril Diagne, Tim Dockhorn, Jack English, Zion
+      English, Patrick Esser, et al. Flux. 1 kontext: Flow
+      matching for in-context image generation and editing
+      in latent space. arXiv preprint arXiv:2506.15742,
+      2025.</li>
+    <li>[2] Chenfei Wu, Jiahao Li, Jingren Zhou, Junyang Lin, Kaiyuan Gao, Kun Yan, Sheng-ming Yin, Shuai Bai,
+      Xiao Xu, Yilei Chen, et al. Qwen-image technical report. arXiv preprint arXiv:2508.02324, 2025.</li>
+    <li>[3] OpenAI. Gpt image 1. https://platform.openai.com/docs/models/gpt-image-1, 2025. Accessed: 2025-11-13.</li>
+    <li>[4] Lvmin Zhang and Maneesh Agrawala. Transparent image layer diffusion using latent transparency. arXiv
+      preprint arXiv:2402.17113, 2024.</li>
+  </ol>
+</section>
+
+
+<br>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Based on the following <a href="http://nerfies.github.io">template</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
