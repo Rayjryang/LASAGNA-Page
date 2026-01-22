@@ -393,7 +393,7 @@ function toggleResearchLinks() {
                         style="width: 60%; object-fit: cover; max-width:60%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
         <br>
-        <p>Starting with existing datasets, we implement a four-stage data construction pipeline leveraging off-the-shelf models with a custom-trained data curator. This process yields a high-quality dataset as the foundation for subsequent model training.</p>
+        <p>Starting with existing datasets, we implement a four-stage data construction pipeline leveraging off-the-shelf models with a custom-trained data curator. This yields a high-quality dataset as the foundation for subsequent model training.</p>
       </h2></center>
     </div>
   </div>
@@ -432,6 +432,7 @@ function toggleResearchLinks() {
       <center><img src="./resources/com_others.png" alt="alt text"
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+        <br>
         <b>Layer generation compared with state-of-the-art image generation and editing models.</b> We compare LASAGNA with Flux.1 <span style="color: blue;">[1]</span>, Qwen-Image-Edit <span style="color: blue;">[2]</span>, and gpt-image-1[High] <span style="color: blue;">[3]</span>. <b>(a)</b> Across three distinct generation tasks, LASAGNA consistently achieves superior inter-layer coherence and consistency. In contrast, competing models often fail to maintain these properties. <b>(b)</b> Moreover, by generating foregrounds with faithfully preserved visual effects, LASAGNA enables diverse post-generation editing operations on individual layers directly—a capability not supported by existing models.
       </h2></center>
     </div>
@@ -447,6 +448,7 @@ function toggleResearchLinks() {
       <center><img src="./resources/vis_comp_layerdiff.png" alt="alt text"
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
+        <br>
         <b>Layer generation compared with LayerDiffuse <span style="color: blue;">[4]</span>.</b> In FG_Gen, our model produces object with appropriate size and position, along with realistic shadows consistent with the background. In BG_Gen and Text2All, our model produces visually consistent results across all layers. Furthermore, it can generate new foregrounds with corresponding visual effects, enabling flexible and realistic post-editing.
       </h2></center>
     </div>
@@ -462,6 +464,7 @@ function toggleResearchLinks() {
       <center><img src="./resources/comp_layer_v2.png" alt="alt text"
                         style="width: 60%; object-fit: cover; max-width:60%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 60%; max-width: 60%;">
+      <br>
       <b>Layer editing with visual effects.</b> We demonstrate the benefits of explicit layer representations with visual effects by comparing three paradigms: Instruct Editing, Layer Editing, and Layer Editing with Visual Effects (LASAGNA). Across recoloring, spatial, and compositional editing tasks, the lack of explicit layer representations makes Instruct Editing prone to unintended changes and less responsive to spatial instructions, while Layer Editing with Visual Effects  yields more coherent and photorealistic results.
       </h2></center>
     </div>
@@ -477,7 +480,8 @@ function toggleResearchLinks() {
       <center><img src="./resources/creative_app_v2.png" alt="alt text"
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
-        <b>Diverse creative applications driven by our model.</b> We leverage both Text2All and FG_Gen modes to jointly guide the synthesis process, unlocking a broader range of editing possibilities and producing diverse, visually appealing results.
+        <br>
+        <b>Diverse creative applications driven by our model.</b> We leverage both Text2All and FG_Gen modes to jointly guide the synthesis, unlocking a broader range of editing possibilities and producing diverse, visually appealing results.
       </h2></center>
     </div>
   </div>
@@ -509,7 +513,7 @@ function toggleResearchLinks() {
       <center><img src="./resources/bg_cond.png" alt="alt text"
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
-        <b>More results from \ours{} under the background-conditioned foreground generation (FG_Gen) mode.</b>
+        
       </h2></center>
     </div>
   </div>
@@ -524,7 +528,7 @@ function toggleResearchLinks() {
       <center><img src="./resources/fg_cond.png" alt="alt text"
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
-      More results from \ours{} under the foreground-conditioned background generation (BG_Gen) mode.
+     
       </h2></center>
     </div>
   </div>
@@ -539,7 +543,7 @@ function toggleResearchLinks() {
       <center><img src="./resources/text2all.png" alt="alt text"
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
-      More results from \ours{} under the text-to-all layer generation (Text2All) mode.
+  
       </h2></center>
     </div>
   </div>
@@ -554,7 +558,8 @@ function toggleResearchLinks() {
       <center><img src="./resources/train_data_3.png" alt="alt text"
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
-      <b>More samples of \dataset{}.</b> Each sample consists of a composite image, a clean background, and a foreground layer with visual effects, along with corresponding captions for all components.
+        <br>
+        <p>Each sample consists of a composite image, a clean background, and a foreground layer with visual effects, along with corresponding captions for all components.</p>
       </h2></center>
     </div>
   </div>
@@ -569,19 +574,14 @@ function toggleResearchLinks() {
       <center><img src="./resources/benchmark_data.png" alt="alt text"
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
-      <b>More samples of \benchmark{}.</b> Each sample consists of a composite image, a foreground layer with visual effects, and a clean background along with corresponding captions for all components. <b>Foreground with visual effects annotated by professional annotators. Background are decomposed by expert models or captured by camera.</b>
+        <br>
+      <p>Each sample consists of a composite image, a foreground layer with visual effects, and a clean background along with corresponding captions for all components. Foreground with visual effects annotated by professional annotators. Background are decomposed by expert models or captured by camera.</p>
+      <br>
+        <p>The image examples come from MULAN [5], COCO 2017 [6], SOBA [7], and Unsplash [8,9,10,11].</p>
       </h2></center>
     </div>
   </div>
 </section>
-
-<hr class="section-divider">
-
-<div class="container">
-  <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
-    <b>The image examples come from MULAN [5], COCO 2017 [6], SOBA [7], and Unsplash [8,9,10,11].</b>
-  </h2></center>
-</div>
 
 <hr class="section-divider">
 
