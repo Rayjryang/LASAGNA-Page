@@ -361,23 +361,20 @@ function toggleResearchLinks() {
                         style="width: 80%; object-fit: cover; max-width:80%;"></a></center>
       <center><h2 class="subtitle has-text-left" style="width: 80%; max-width: 80%;">
       <br>
-      <b>Layered generation with \ours{}.</b> <b>(a)</b> Our framework supports three generation modes: background-conditioned foreground generation, foreground-conditioned background generation, and text-to-all layer generation, which flexibly handle different inputs and jointly synthesize coherent, high-quality composites, backgrounds, and transparent foregrounds with realistic visual effects (e.g., shadows and reflections). <b>(b)</b> Generated layers enable direct post-editing into new, coherent scenes. 
       </h2></center>
     </div>
   </div>
 </section>
-
-<hr class="section-divider">
 
 <section class="section">
   <div class="container">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <!-- <h2 class="title is-3">Abstract</h2> -->
         <div class="content has-text-left">
           <p>
-            Recent image generation models have shown impressive progress, yet they often struggle to provide controllable and consistent results when users attempt to edit specific elements within an existing image. Layered representations enable flexible, user-driven content creation, but existing approaches often fail to produce layers with coherent compositing relationships, and their object layers typically lack realistic visual effects such as shadows and reflections. To overcome these limitations, we propose \ours{}, a novel, unified framework that generates an image jointly with its composing layers---a photorealistic background and a high-quality transparent foreground with compelling visual effects. Unlike prior work, LASAGNA efficiently learns correct image composition from a wide range of conditioning inputs—text prompts, foreground, background, and location masks—offering greater controllability for real-world applications. To enable this, we introduce \dataset{}, a new dataset composed of clean backgrounds and RGBA foregrounds with physically grounded visual effects. We also propose \benchmark{}, the first  benchmark for layer editing. We demonstrate that LASAGNA excels in generating highly consistent and coherent results across multiple image layers simultaneously, enabling diverse post-editing applications that accurately preserve identity and visual effects. LASAGNA-48K and LASAGNABENCH will be publicly released to foster open research in the community.
+            <b>Layered generation with \ours{}. Our framework supports three generation modes: background-conditioned foreground generation, foreground-conditioned background generation, and text-to-all layer generation, which flexibly handle different inputs and jointly synthesize coherent, high-quality composites, backgrounds, and transparent foregrounds with realistic visual effects (e.g., shadows and reflections).
           </p>
         </div>
       </div>
